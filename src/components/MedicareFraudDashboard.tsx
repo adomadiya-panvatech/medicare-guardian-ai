@@ -282,7 +282,7 @@ const MedicareFraudDashboard = () => {
                                         <XAxis dataKey="month" />
                                         <YAxis />
                                         <Tooltip formatter={(value, name) => [
-                                            name === 'savings' ? `$${(value / 1000000).toFixed(1)}M` : value,
+                                            name === 'savings' ? `$${(Number(value) / 1000000).toFixed(1)}M` : value,
                                             name === 'flagged' ? 'Flagged Claims' : name === 'confirmed' ? 'Confirmed Fraud' : 'Savings'
                                         ]} />
                                         <Legend />
