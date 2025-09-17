@@ -39,7 +39,7 @@ const MedicareFraudDashboard = () => {
 
     // Sample data - in real app this would come from API
     const kpiData = {
-        totalClaims: 2847392,
+        totalClaims: 28473,
         flaggedClaims: 3847,
         falsePositiveRate: 8.2,
         potentialSavings: 12500000,
