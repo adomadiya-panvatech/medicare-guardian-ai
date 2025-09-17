@@ -193,8 +193,8 @@ const MedicareFraudDashboard = () => {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`${activeTab === tab.id
-                                        ? 'border-blue-500 text-blue-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    ? 'border-blue-500 text-blue-600'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                     } whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm flex items-center`}
                             >
                                 <tab.icon className="h-5 w-5 mr-2" />
@@ -208,78 +208,67 @@ const MedicareFraudDashboard = () => {
                 {activeTab === 'overview' && (
                     <div className="space-y-8">
                         {/* KPI Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <FileText className="h-8 w-8 text-blue-600" />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                            {/* Reusable Card */}
+                            {[
+                                {
+                                    label: "Total Claims",
+                                    value: kpiData.totalClaims.toLocaleString(),
+                                    icon: FileText,
+                                    color: "text-blue-600",
+                                    bg: "bg-blue-50",
+                                },
+                                {
+                                    label: "Flagged Claims",
+                                    value: kpiData.flaggedClaims.toLocaleString(),
+                                    icon: AlertTriangle,
+                                    color: "text-red-600",
+                                    bg: "bg-red-50",
+                                },
+                                {
+                                    label: "Detection Rate",
+                                    value: `${kpiData.detectionRate}%`,
+                                    icon: TrendingUp,
+                                    color: "text-green-600",
+                                    bg: "bg-green-50",
+                                },
+                                {
+                                    label: "False Positive",
+                                    value: `${kpiData.falsePositiveRate}%`,
+                                    icon: XCircle,
+                                    color: "text-yellow-600",
+                                    bg: "bg-yellow-50",
+                                },
+                                {
+                                    label: "Potential Savings",
+                                    value: `$${(kpiData.potentialSavings / 1000000).toFixed(1)}M`,
+                                    icon: DollarSign,
+                                    color: "text-emerald-600",
+                                    bg: "bg-emerald-50",
+                                },
+                                {
+                                    label: "Avg Processing",
+                                    value: `${kpiData.avgProcessingTime}s`,
+                                    icon: Clock,
+                                    color: "text-indigo-600",
+                                    bg: "bg-indigo-50",
+                                },
+                            ].map((item, idx) => (
+                                <div
+                                    key={idx}
+                                    className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 
+                 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 
+                 flex items-center gap-4"
+                                >
+                                    <div className={`p-3 rounded-xl ${item.bg}`}>
+                                        <item.icon className={`h-6 w-6 ${item.color}`} />
                                     </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Total Claims</p>
-                                        <p className="text-2xl font-bold text-gray-900">{kpiData.totalClaims.toLocaleString()}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <AlertTriangle className="h-8 w-8 text-red-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Flagged Claims</p>
-                                        <p className="text-2xl font-bold text-gray-900">{kpiData.flaggedClaims.toLocaleString()}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <TrendingUp className="h-8 w-8 text-green-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Detection Rate</p>
-                                        <p className="text-2xl font-bold text-gray-900">{kpiData.detectionRate}%</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <XCircle className="h-8 w-8 text-yellow-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">False Positive</p>
-                                        <p className="text-2xl font-bold text-gray-900">{kpiData.falsePositiveRate}%</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <DollarSign className="h-8 w-8 text-green-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Potential Savings</p>
-                                        <p className="text-2xl font-bold text-gray-900">${(kpiData.potentialSavings / 1000000).toFixed(1)}M</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <Clock className="h-8 w-8 text-blue-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Avg Processing</p>
-                                        <p className="text-2xl font-bold text-gray-900">{kpiData.avgProcessingTime}s</p>
+                                    <div>
+                                        <p className="text-sm font-medium text-gray-500">{item.label}</p>
+                                        <p className="text-2xl font-bold text-gray-900">{item.value}</p>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
 
                         {/* Charts Row */}
@@ -382,48 +371,81 @@ const MedicareFraudDashboard = () => {
                         </div>
 
                         {/* Alerts List */}
-                        <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
-                            <div className="px-6 py-4 border-b border-gray-200">
-                                <h3 className="text-lg font-medium text-gray-900">High Priority Alerts</h3>
+                        <div className="bg-white shadow-md rounded-2xl border border-gray-100 overflow-hidden">
+                            {/* Header */}
+                            <div className="px-6 py-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
+                                <h3 className="text-lg font-semibold text-gray-900">High Priority Alerts</h3>
+                                <span className="text-sm text-gray-500">{alertsData.length} alerts</span>
                             </div>
-                            <div className="divide-y divide-gray-200">
-                                {alertsData.map((alert) => (
-                                    <div key={alert.id} className="p-6 hover:bg-gray-50 transition-colors">
-                                        <div className="flex items-start justify-between">
+
+                            {/* Alerts */}
+                            <div className="divide-y divide-gray-100">
+                                {alertsData.map((alert, index) => (
+                                    <div
+                                        key={alert.id}
+                                        className={`p-6 transition-all duration-200 ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                                            } hover:shadow-md`}
+                                    >
+                                        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                                            {/* Left Section */}
                                             <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getPriorityColor(alert.priority)}`}>
-                                                        {alert.priority.toUpperCase()} PRIORITY
+                                                {/* Header Row */}
+                                                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                                    <h4 className="text-lg font-bold text-gray-900">{alert.provider}</h4>
+                                                    <span className="text-sm font-semibold text-gray-700">
+                                                        Risk Score:
+                                                        <span className="ml-1 text-red-600">{alert.riskScore}%</span>
                                                     </span>
-                                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(alert.status)}`}>
+                                                </div>
+
+                                                {/* Tags */}
+                                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                                    <span
+                                                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${getPriorityColor(
+                                                            alert.priority
+                                                        )}`}
+                                                    >
+                                                        {alert.priority.toUpperCase()}
+                                                    </span>
+                                                    <span
+                                                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                                                            alert.status
+                                                        )}`}
+                                                    >
                                                         {alert.status}
                                                     </span>
-                                                    <span className="text-sm text-gray-500">Risk Score: {alert.riskScore}%</span>
+                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                                                        Provider ID: {alert.providerID}
+                                                    </span>
                                                 </div>
-                                                <h4 className="text-lg font-medium text-gray-900 mb-1">{alert.provider}</h4>
-                                                <p className="text-sm text-gray-600 mb-2">Provider ID: {alert.providerID}</p>
-                                                <p className="text-sm text-gray-800 mb-2">{alert.description}</p>
-                                                <div className="flex items-center gap-4 text-sm text-gray-500">
+
+                                                {/* Description */}
+                                                <p className="text-sm text-gray-700 mb-3">{alert.description}</p>
+
+                                                {/* Meta Info */}
+                                                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
                                                     <span className="flex items-center">
-                                                        <DollarSign className="h-4 w-4 mr-1" />
+                                                        <DollarSign className="h-4 w-4 mr-1 text-green-500" />
                                                         {alert.amount}
                                                     </span>
                                                     <span className="flex items-center">
-                                                        <MapPin className="h-4 w-4 mr-1" />
+                                                        <MapPin className="h-4 w-4 mr-1 text-pink-500" />
                                                         {alert.location}
                                                     </span>
                                                     <span className="flex items-center">
-                                                        <Clock className="h-4 w-4 mr-1" />
+                                                        <Clock className="h-4 w-4 mr-1 text-indigo-500" />
                                                         {alert.date}
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div className="flex items-center gap-2 ml-4">
-                                                <button className="inline-flex items-center px-3 py-1 border border-gray-300 rounded text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+
+                                            {/* Right Section - Actions */}
+                                            <div className="flex flex-col gap-2 lg:w-40">
+                                                <button className="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 transition">
                                                     <Eye className="h-4 w-4 mr-1" />
                                                     View Details
                                                 </button>
-                                                <button className="inline-flex items-center px-3 py-1 border border-blue-300 rounded text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100">
+                                                <button className="w-full inline-flex items-center justify-center px-3 py-2 border border-blue-300 rounded-lg text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition">
                                                     Investigate
                                                 </button>
                                             </div>
@@ -475,43 +497,60 @@ const MedicareFraudDashboard = () => {
                         </div>
 
                         {/* Provider Risk Heatmap */}
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                            <h3 className="text-lg font-medium text-gray-900 mb-4">Provider Risk Heatmap</h3>
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                            {/* Header */}
+                            <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                                Provider Risk Heatmap
+                            </h3>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                {/* Chart Section */}
                                 <div className="lg:col-span-2">
-                                    <ResponsiveContainer width="100%" height={300}>
-                                        <BarChart data={[
-                                            { specialty: 'Cardiology', highRisk: 12, medRisk: 28, lowRisk: 160 },
-                                            { specialty: 'Orthopedics', highRisk: 8, medRisk: 22, lowRisk: 95 },
-                                            { specialty: 'Physical Therapy', highRisk: 15, medRisk: 35, lowRisk: 180 },
-                                            { specialty: 'Primary Care', highRisk: 6, medRisk: 42, lowRisk: 320 },
-                                            { specialty: 'Radiology', highRisk: 9, medRisk: 18, lowRisk: 78 }
-                                        ]}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis dataKey="specialty" angle={-45} textAnchor="end" height={60} />
-                                            <YAxis />
-                                            <Tooltip />
-                                            <Legend />
-                                            <Bar dataKey="highRisk" stackId="a" fill="#EF4444" name="High Risk" />
-                                            <Bar dataKey="medRisk" stackId="a" fill="#F59E0B" name="Medium Risk" />
-                                            <Bar dataKey="lowRisk" stackId="a" fill="#10B981" name="Low Risk" />
+                                    <ResponsiveContainer width="100%" height={320}>
+                                        <BarChart
+                                            data={[
+                                                { specialty: "Cardiology", highRisk: 12, medRisk: 28, lowRisk: 160 },
+                                                { specialty: "Orthopedics", highRisk: 8, medRisk: 22, lowRisk: 95 },
+                                                { specialty: "Physical Therapy", highRisk: 15, medRisk: 35, lowRisk: 180 },
+                                                { specialty: "Primary Care", highRisk: 6, medRisk: 42, lowRisk: 320 },
+                                                { specialty: "Radiology", highRisk: 9, medRisk: 18, lowRisk: 78 },
+                                            ]}
+                                            margin={{ top: 10, right: 20, left: 0, bottom: 40 }}
+                                        >
+                                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                            <XAxis
+                                                dataKey="specialty"
+                                                angle={-30}
+                                                textAnchor="end"
+                                                interval={0}
+                                                height={60}
+                                                tick={{ fontSize: 12 }}
+                                            />
+                                            <YAxis tick={{ fontSize: 12 }} />
+                                            <Tooltip contentStyle={{ borderRadius: "8px" }} />
+                                            <Legend wrapperStyle={{ fontSize: "12px" }} />
+                                            <Bar dataKey="highRisk" stackId="a" fill="#EF4444" name="High Risk" radius={[4, 4, 0, 0]} />
+                                            <Bar dataKey="medRisk" stackId="a" fill="#F59E0B" name="Medium Risk" radius={[4, 4, 0, 0]} />
+                                            <Bar dataKey="lowRisk" stackId="a" fill="#10B981" name="Low Risk" radius={[4, 4, 0, 0]} />
                                         </BarChart>
                                     </ResponsiveContainer>
                                 </div>
-                                <div className="space-y-4">
-                                    <div className="bg-red-50 p-4 rounded-lg">
-                                        <h4 className="font-medium text-red-900">High Risk Providers</h4>
-                                        <p className="text-2xl font-bold text-red-600">50</p>
+
+                                {/* Stats Section */}
+                                <div className="space-y-5">
+                                    <div className="bg-red-50 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                                        <h4 className="text-sm font-medium text-red-900">High Risk Providers</h4>
+                                        <p className="text-3xl font-bold text-red-600">50</p>
                                         <p className="text-sm text-red-600">Requiring immediate review</p>
                                     </div>
-                                    <div className="bg-yellow-50 p-4 rounded-lg">
-                                        <h4 className="font-medium text-yellow-900">Medium Risk Providers</h4>
-                                        <p className="text-2xl font-bold text-yellow-600">145</p>
+                                    <div className="bg-yellow-50 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                                        <h4 className="text-sm font-medium text-yellow-900">Medium Risk Providers</h4>
+                                        <p className="text-3xl font-bold text-yellow-600">145</p>
                                         <p className="text-sm text-yellow-600">Under monitoring</p>
                                     </div>
-                                    <div className="bg-green-50 p-4 rounded-lg">
-                                        <h4 className="font-medium text-green-900">Low Risk Providers</h4>
-                                        <p className="text-2xl font-bold text-green-600">833</p>
+                                    <div className="bg-green-50 p-5 rounded-lg shadow-sm hover:shadow-md transition">
+                                        <h4 className="text-sm font-medium text-green-900">Low Risk Providers</h4>
+                                        <p className="text-3xl font-bold text-green-600">833</p>
                                         <p className="text-sm text-green-600">Normal patterns</p>
                                     </div>
                                 </div>
@@ -590,7 +629,7 @@ const MedicareFraudDashboard = () => {
                                                     <div className="flex items-center">
                                                         <div className="text-sm font-medium text-gray-900">{provider.riskScore}</div>
                                                         <div className={`ml-2 w-12 h-2 rounded-full ${provider.riskScore >= 80 ? 'bg-red-400' :
-                                                                provider.riskScore >= 60 ? 'bg-yellow-400' : 'bg-green-400'
+                                                            provider.riskScore >= 60 ? 'bg-yellow-400' : 'bg-green-400'
                                                             }`}></div>
                                                     </div>
                                                 </td>
@@ -674,65 +713,39 @@ const MedicareFraudDashboard = () => {
                 {activeTab === 'network' && (
                     <div className="space-y-6">
                         {/* Network Overview Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <Network className="h-8 w-8 text-blue-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Suspicious Networks</p>
-                                        <p className="text-2xl font-bold text-gray-900">12</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <Users className="h-8 w-8 text-red-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Connected Providers</p>
-                                        <p className="text-2xl font-bold text-gray-900">47</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {[
+                                { icon: Network, color: "text-blue-600", label: "Suspicious Networks", value: "12" },
+                                { icon: Users, color: "text-red-600", label: "Connected Providers", value: "47" },
+                                { icon: TrendingUp, color: "text-yellow-600", label: "Referral Anomalies", value: "156" },
+                                { icon: DollarSign, color: "text-green-600", label: "Network Risk Value", value: "$3.2M" },
+                            ].map((card, i) => (
+                                <div
+                                    key={i}
+                                    className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition"
+                                >
+                                    <div className="flex items-center">
+                                        <card.icon className={`h-9 w-9 ${card.color}`} />
+                                        <div className="ml-4">
+                                            <p className="text-sm font-medium text-gray-500">{card.label}</p>
+                                            <p className="text-3xl font-bold text-gray-900">{card.value}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <TrendingUp className="h-8 w-8 text-yellow-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Referral Anomalies</p>
-                                        <p className="text-2xl font-bold text-gray-900">156</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <div className="flex items-center">
-                                    <div className="flex-shrink-0">
-                                        <DollarSign className="h-8 w-8 text-green-600" />
-                                    </div>
-                                    <div className="ml-4">
-                                        <p className="text-sm font-medium text-gray-500">Network Risk Value</p>
-                                        <p className="text-2xl font-bold text-gray-900">$3.2M</p>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
                         {/* Network Visualization */}
-                        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                            <div className="flex justify-between items-center mb-4">
-                                <h3 className="text-lg font-medium text-gray-900">Suspicious Provider Networks</h3>
+                        <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
+                                <h3 className="text-lg font-semibold text-gray-900">
+                                    Suspicious Provider Networks
+                                </h3>
                                 <div className="flex gap-2">
-                                    <button className="px-3 py-1 text-sm border border-gray-300 rounded bg-white hover:bg-gray-50">
+                                    <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition">
                                         Filter Networks
                                     </button>
-                                    <button className="px-3 py-1 text-sm border border-gray-300 rounded bg-white hover:bg-gray-50">
+                                    <button className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition">
                                         Export Graph
                                     </button>
                                 </div>
@@ -741,36 +754,34 @@ const MedicareFraudDashboard = () => {
                             {/* Simplified Network Visualization */}
                             <div className="bg-gray-50 rounded-lg p-8 min-h-[400px] flex items-center justify-center relative">
                                 <div className="text-center space-y-4">
-                                    {/* Mock network nodes */}
-                                    <div className="relative w-80 h-80 mx-auto">
-                                        {/* Central node */}
-                                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white font-medium shadow-lg">
+                                    <div className="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto">
+                                        {/* Central Node */}
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white font-medium shadow-lg">
                                             P-001
                                         </div>
-
-                                        {/* Connected nodes */}
+                                        {/* Connected Nodes */}
                                         {[
-                                            { top: '20%', left: '50%', color: 'bg-yellow-500', id: 'P-002' },
-                                            { top: '80%', left: '50%', color: 'bg-yellow-500', id: 'P-003' },
-                                            { top: '50%', left: '20%', color: 'bg-orange-500', id: 'P-004' },
-                                            { top: '50%', left: '80%', color: 'bg-orange-500', id: 'P-005' },
-                                            { top: '30%', left: '30%', color: 'bg-blue-500', id: 'P-006' },
-                                            { top: '70%', left: '70%', color: 'bg-blue-500', id: 'P-007' }
+                                            { top: "20%", left: "50%", color: "bg-yellow-500", id: "P-002" },
+                                            { top: "80%", left: "50%", color: "bg-yellow-500", id: "P-003" },
+                                            { top: "50%", left: "20%", color: "bg-orange-500", id: "P-004" },
+                                            { top: "50%", left: "80%", color: "bg-orange-500", id: "P-005" },
+                                            { top: "30%", left: "30%", color: "bg-blue-500", id: "P-006" },
+                                            { top: "70%", left: "70%", color: "bg-blue-500", id: "P-007" },
                                         ].map((node, i) => (
                                             <div key={i}>
-                                                {/* Connection line */}
+                                                {/* Connection Line */}
                                                 <div className="absolute top-1/2 left-1/2 w-px h-px">
                                                     <div
                                                         className="absolute w-0.5 bg-gray-400 origin-bottom"
                                                         style={{
-                                                            height: '60px',
-                                                            transform: `rotate(${i * 60}deg) translate(-50%, -100%)`
+                                                            height: "60px",
+                                                            transform: `rotate(${i * 60}deg) translate(-50%, -100%)`,
                                                         }}
                                                     />
                                                 </div>
                                                 {/* Node */}
                                                 <div
-                                                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 ${node.color} rounded-full flex items-center justify-center text-white text-xs font-medium shadow`}
+                                                    className={`absolute -translate-x-1/2 -translate-y-1/2 w-12 h-12 ${node.color} rounded-full flex items-center justify-center text-white text-xs font-medium shadow`}
                                                     style={{ top: node.top, left: node.left }}
                                                 >
                                                     {node.id}
@@ -778,142 +789,152 @@ const MedicareFraudDashboard = () => {
                                             </div>
                                         ))}
                                     </div>
-
-                                    <div className="text-sm text-gray-600 mt-4">
+                                    <div className="text-sm text-gray-600">
                                         <p>Interactive network visualization showing provider relationships</p>
-                                        <p className="text-xs mt-1">Red: High Risk • Orange: Medium Risk • Yellow: Monitored • Blue: Connected</p>
+                                        <p className="text-xs mt-1">
+                                            <span className="text-red-500 font-semibold">Red:</span> High Risk •{" "}
+                                            <span className="text-orange-500 font-semibold">Orange:</span>{" "}
+                                            Medium Risk • <span className="text-yellow-500 font-semibold">Yellow:</span>{" "}
+                                            Monitored • <span className="text-blue-500 font-semibold">Blue:</span>{" "}
+                                            Connected
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Network Alerts */}
-                        <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
-                            <div className="px-6 py-4 border-b border-gray-200">
-                                <h3 className="text-lg font-medium text-gray-900">Network Fraud Alerts</h3>
-                            </div>
-                            <div className="divide-y divide-gray-200">
-                                {[
-                                    {
-                                        networkId: 'NET-001',
-                                        riskScore: 92,
-                                        providers: ['Dr. Smith Group', 'Valley Clinic', 'Metro PT'],
-                                        pattern: 'Circular Referral Pattern',
-                                        description: 'Unusual referral loop detected between 3 providers with 340% increase in cross-referrals',
-                                        amount: '$1,240,000',
-                                        patients: 156,
-                                        status: 'Critical'
-                                    },
-                                    {
-                                        networkId: 'NET-002',
-                                        riskScore: 84,
-                                        providers: ['Advanced Diagnostics', 'City Medical', 'Rehab Plus'],
-                                        pattern: 'Billing Synchronization',
-                                        description: 'Synchronized billing patterns suggesting coordination between providers',
-                                        amount: '$890,000',
-                                        patients: 203,
-                                        status: 'High Priority'
-                                    },
-                                    {
-                                        networkId: 'NET-003',
-                                        riskScore: 76,
-                                        providers: ['Downtown Cardiology', 'Heart Center'],
-                                        pattern: 'Patient Sharing Anomaly',
-                                        description: 'Unusual patient sharing pattern with identical billing codes',
-                                        amount: '$567,000',
-                                        patients: 89,
-                                        status: 'Under Review'
-                                    }
-                                ].map((network, index) => (
-                                    <div key={index} className="p-6 hover:bg-gray-50">
-                                        <div className="flex items-start justify-between">
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${network.status === 'Critical' ? 'bg-red-100 text-red-800' :
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            {/* Network Alerts */}
+                            <div className="lg:col-span-2 bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+                                <div className="px-6 py-4 border-b border-gray-200">
+                                    <h3 className="text-lg font-semibold text-gray-900">Network Fraud Alerts</h3>
+                                </div>
+                                <div className="divide-y divide-gray-200">
+                                    {[
+                                        {
+                                            networkId: 'NET-001',
+                                            riskScore: 92,
+                                            providers: ['Dr. Smith Group', 'Valley Clinic', 'Metro PT'],
+                                            pattern: 'Circular Referral Pattern',
+                                            description: 'Unusual referral loop detected between 3 providers with 340% increase in cross-referrals',
+                                            amount: '$1,240,000',
+                                            patients: 156,
+                                            status: 'Critical'
+                                        },
+                                        {
+                                            networkId: 'NET-002',
+                                            riskScore: 84,
+                                            providers: ['Advanced Diagnostics', 'City Medical', 'Rehab Plus'],
+                                            pattern: 'Billing Synchronization',
+                                            description: 'Synchronized billing patterns suggesting coordination between providers',
+                                            amount: '$890,000',
+                                            patients: 203,
+                                            status: 'High Priority'
+                                        },
+                                        {
+                                            networkId: 'NET-003',
+                                            riskScore: 76,
+                                            providers: ['Downtown Cardiology', 'Heart Center'],
+                                            pattern: 'Patient Sharing Anomaly',
+                                            description: 'Unusual patient sharing pattern with identical billing codes',
+                                            amount: '$567,000',
+                                            patients: 89,
+                                            status: 'Under Review'
+                                        }
+                                    ].map((network, index) => (
+                                        <div key={index} className="p-6 hover:bg-gray-50 transition">
+                                            <div className="flex items-start justify-between">
+                                                <div className="flex-1">
+                                                    <div className="flex items-center gap-3 mb-2">
+                                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${network.status === 'Critical' ? 'bg-red-100 text-red-800' :
                                                             network.status === 'High Priority' ? 'bg-orange-100 text-orange-800' :
                                                                 'bg-yellow-100 text-yellow-800'
-                                                        }`}>
-                                                        {network.status}
-                                                    </span>
-                                                    <span className="text-sm text-gray-500">Risk Score: {network.riskScore}%</span>
-                                                    <span className="text-sm text-gray-500">Network ID: {network.networkId}</span>
-                                                </div>
-                                                <h4 className="text-lg font-medium text-gray-900 mb-1">{network.pattern}</h4>
-                                                <p className="text-sm text-gray-600 mb-2">{network.description}</p>
-                                                <div className="flex flex-wrap gap-2 mb-3">
-                                                    {network.providers.map((provider, i) => (
-                                                        <span key={i} className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800">
-                                                            {provider}
+                                                            }`}>
+                                                            {network.status}
                                                         </span>
-                                                    ))}
+                                                        <span className="text-sm text-gray-500">Risk Score: {network.riskScore}%</span>
+                                                        <span className="text-sm text-gray-500">Network ID: {network.networkId}</span>
+                                                    </div>
+                                                    <h4 className="text-lg font-medium text-gray-900 mb-1">{network.pattern}</h4>
+                                                    <p className="text-sm text-gray-600 mb-2">{network.description}</p>
+                                                    <div className="flex flex-wrap gap-2 mb-3">
+                                                        {network.providers.map((provider, i) => (
+                                                            <span key={i} className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                                                                {provider}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                                                        <span className="flex items-center">
+                                                            <DollarSign className="h-4 w-4 mr-1" />
+                                                            {network.amount}
+                                                        </span>
+                                                        <span className="flex items-center">
+                                                            <Users className="h-4 w-4 mr-1" />
+                                                            {network.patients} patients
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-center gap-4 text-sm text-gray-500">
-                                                    <span className="flex items-center">
-                                                        <DollarSign className="h-4 w-4 mr-1" />
-                                                        {network.amount}
-                                                    </span>
-                                                    <span className="flex items-center">
-                                                        <Users className="h-4 w-4 mr-1" />
-                                                        {network.patients} patients
-                                                    </span>
+                                                <div className="flex items-center gap-2 ml-4">
+                                                    <button className="inline-flex items-center px-3 py-1 border border-gray-300 rounded text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                                        <Network className="h-4 w-4 mr-1" />
+                                                        View Network
+                                                    </button>
+                                                    <button className="inline-flex items-center px-3 py-1 border border-red-300 rounded text-sm font-medium text-red-700 bg-red-50 hover:bg-red-100">
+                                                        Investigate
+                                                    </button>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-2 ml-4">
-                                                <button className="inline-flex items-center px-3 py-1 border border-gray-300 rounded text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                                                    <Network className="h-4 w-4 mr-1" />
-                                                    View Network
-                                                </button>
-                                                <button className="inline-flex items-center px-3 py-1 border border-red-300 rounded text-sm font-medium text-red-700 bg-red-50 hover:bg-red-100">
-                                                    Investigate
-                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Network Analytics */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <h3 className="text-lg font-medium text-gray-900 mb-4">Referral Pattern Analysis</h3>
-                                <ResponsiveContainer width="100%" height={250}>
-                                    <LineChart data={[
-                                        { month: 'Jan', normal: 12500, suspicious: 450 },
-                                        { month: 'Feb', normal: 13200, suspicious: 520 },
-                                        { month: 'Mar', normal: 12800, suspicious: 680 },
-                                        { month: 'Apr', normal: 14100, suspicious: 890 },
-                                        { month: 'May', normal: 13900, suspicious: 1240 }
-                                    ]}>
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="month" />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
-                                        <Line type="monotone" dataKey="normal" stroke="#10B981" strokeWidth={2} name="Normal Referrals" />
-                                        <Line type="monotone" dataKey="suspicious" stroke="#EF4444" strokeWidth={2} name="Suspicious Referrals" />
-                                    </LineChart>
-                                </ResponsiveContainer>
+                                    ))}
+                                </div>
                             </div>
 
-                            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                                <h3 className="text-lg font-medium text-gray-900 mb-4">Network Risk Metrics</h3>
-                                <div className="space-y-4">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm text-gray-600">Active Networks Monitored</span>
-                                        <span className="text-lg font-medium">127</span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm text-gray-600">High-Risk Networks</span>
-                                        <span className="text-lg font-medium text-red-600">12</span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm text-gray-600">Average Network Size</span>
-                                        <span className="text-lg font-medium">3.7 providers</span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-sm text-gray-600">Detection Accuracy</span>
-                                        <span className="text-lg font-medium text-green-600">91.3%</span>
+                            {/* Network Analytics */}
+                            <div className="space-y-6">
+                                <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                                        Referral Pattern Analysis
+                                    </h3>
+                                    <ResponsiveContainer width="100%" height={250}>
+
+                                        <LineChart data={[
+                                            { month: 'Jan', normal: 12500, suspicious: 450 },
+                                            { month: 'Feb', normal: 13200, suspicious: 520 },
+                                            { month: 'Mar', normal: 12800, suspicious: 680 },
+                                            { month: 'Apr', normal: 14100, suspicious: 890 },
+                                            { month: 'May', normal: 13900, suspicious: 1240 }
+                                        ]}>
+                                            <CartesianGrid strokeDasharray="3 3" />
+                                            <XAxis dataKey="month" />
+                                            <YAxis />
+                                            <Tooltip />
+                                            <Legend />
+                                            <Line type="monotone" dataKey="normal" stroke="#10B981" strokeWidth={2} name="Normal Referrals" />
+                                            <Line type="monotone" dataKey="suspicious" stroke="#EF4444" strokeWidth={2} name="Suspicious Referrals" />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </div>
+
+                                <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                                        Network Risk Metrics
+                                    </h3>
+                                    <div className="space-y-4">
+                                        {[
+                                            { label: "Active Networks Monitored", value: "127" },
+                                            { label: "High-Risk Networks", value: "12", color: "text-red-600" },
+                                            { label: "Average Network Size", value: "3.7 providers" },
+                                            { label: "Detection Accuracy", value: "91.3%", color: "text-green-600" },
+                                        ].map((metric, i) => (
+                                            <div key={i} className="flex justify-between items-center">
+                                                <span className="text-sm text-gray-600">{metric.label}</span>
+                                                <span className={`text-lg font-medium ${metric.color || ""}`}>
+                                                    {metric.value}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
