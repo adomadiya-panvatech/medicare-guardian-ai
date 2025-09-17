@@ -16,7 +16,7 @@ const alerts = [
     type: "Overbilling",
     riskScore: 89,
     amount: "$45,230",
-    status: "High Risk",
+    status: "High",
     date: "2024-01-15",
   },
   {
@@ -25,7 +25,7 @@ const alerts = [
     type: "Upcoding",
     riskScore: 76,
     amount: "$23,410",
-    status: "Medium Risk",
+    status: "Medium",
     date: "2024-01-14",
   },
   {
@@ -43,7 +43,7 @@ const alerts = [
     type: "Unbundling",
     riskScore: 68,
     amount: "$18,750",
-    status: "Medium Risk", 
+    status: "Medium", 
     date: "2024-01-12",
   },
 ];
