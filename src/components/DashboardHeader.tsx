@@ -1,8 +1,11 @@
-import { Bell, Search, Settings, Shield, User } from "lucide-react";
+import { Bell, LogOut, Search, Settings, Shield, User, PlusCircleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
 
 export const DashboardHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="bg-gradient-header border-b border-border/50 px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
@@ -17,24 +20,33 @@ export const DashboardHeader = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="flex items-center space-x-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input 
-              placeholder="Search claims, providers..." 
+            <Input
+              placeholder="Search claims, providers..."
               className="pl-10 w-80 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20"
             />
           </div>
-          
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-white hover:bg-white/10"
+            onClick={() => navigate("/dashboard")}
+          >
+            <PlusCircleIcon className="w-5 h-5" />
+          </Button>
+
           <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
             <Bell className="w-5 h-5" />
           </Button>
-          
+
           <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
             <Settings className="w-5 h-5" />
           </Button>
-          
+
           <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
             <User className="w-5 h-5" />
           </Button>
