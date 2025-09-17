@@ -132,7 +132,7 @@ const MedicareFraudDashboard = () => {
     return (
         <div className="min-h-screen bg-background">
             {/* Header */}
-            <header className="bg-gradient-header border-b border-border/50 px-6 py-4 shadow-sm">
+            {/* <header className="bg-gradient-header border-b border-border/50 px-6 py-4 shadow-sm">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-3">
@@ -177,7 +177,7 @@ const MedicareFraudDashboard = () => {
                         </Button>
                     </div>
                 </div>
-            </header>
+            </header> */}
 
             <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Navigation Tabs */}

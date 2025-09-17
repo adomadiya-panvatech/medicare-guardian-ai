@@ -8,7 +8,7 @@ import { ProviderAnalytics } from "@/components/ProviderAnalytics";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <DashboardHeader />
+      {/* <DashboardHeader /> */}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6">
         {/* Main Content Area */}
