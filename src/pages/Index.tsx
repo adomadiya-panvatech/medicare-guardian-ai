@@ -81,6 +81,41 @@ const Index = () => {
             </div>
           </div>
 
+          {/* AI Detection Status */}
+        <Card className="bg-gradient-card border-border/50">
+          <CardHeader>
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Shield className="w-5 h-5 text-primary" />
+              </div>
+              <CardTitle className="text-lg font-semibold text-foreground">
+                AI Detection Status
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Real-time Monitoring</span>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-success rounded-full"></div>
+                <span className="text-success font-medium text-sm">Active</span>
+              </div>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">ML Model Accuracy</span>
+              <span className="text-foreground font-medium">94.7%</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Claims Processed Today</span>
+              <span className="text-foreground font-medium">45,892</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">False Positive Rate</span>
+              <span className="text-success font-medium">2.1%</span>
+            </div>
+          </CardContent>
+        </Card>
+
           {/* Recent Activity Card */}
           <div className="bg-gradient-card border border-border/50 rounded-lg p-4 lg:p-6">
             <div className="flex items-center space-x-3 mb-4 lg:mb-6">
