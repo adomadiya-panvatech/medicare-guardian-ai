@@ -86,7 +86,7 @@ export function AppSidebar() {
 
       <SidebarContent className="flex flex-col flex-1">
         {/* Navigation */}
-        <SidebarGroup className="flex-1">
+        <SidebarGroup className="flex-1 p-0">
           {!collapsed && (
             <SidebarGroupLabel className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               Navigation
