@@ -26,10 +26,7 @@ const AppLayout = () => {
       <div className="flex-1 flex flex-col">
         <header className="bg-gradient-header border-b border-border/50 px-6 py-4 shadow-sm">
           <div className="flex items-center justify-between">
-            
-
             <div className="flex items-center space-x-4">
-            <SidebarTrigger className="ml-4" />
               <div className="flex items-center space-x-3">
                 <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg backdrop-blur-sm">
                   <Shield className="w-6 h-6 text-white" />
@@ -74,7 +71,7 @@ const AppLayout = () => {
           </div>
         </header>
 
-        <main className="flex-1 p-6 bg-background">
+        <main className="flex-1 p-4 md:p-6 bg-background overflow-auto">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/alerts" element={<Alerts />} />
