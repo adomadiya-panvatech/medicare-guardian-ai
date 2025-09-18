@@ -85,7 +85,7 @@ export const FraudChart = () => {
       </div>
 
       {/* Fraud Detection Trends + AI Detection Status in one row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
         {/* Fraud Detection Trends */}
         <Card className="bg-gradient-card border-border/50">
           <CardHeader>
