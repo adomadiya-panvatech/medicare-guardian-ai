@@ -11,67 +11,76 @@ import Providers from "./pages/Providers";
 import NetworkAnalysis from "./pages/Network";
 import NotFound from "./pages/NotFound";
 import MedicareFraudDashboard from "./components/MedicareFraudDashboard";
-import { Shield, Search, PlusCircleIcon, Bell, Settings, User } from "lucide-react";
+import { Shield, Search, PlusCircleIcon, Bell, Settings, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const queryClient = new QueryClient();
 
 const AppLayout = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   return (
     <div className="flex min-h-screen w-full">
       <AppSidebar />
-      <div className="flex-1 flex flex-col">
-        <header className="bg-gradient-header border-b border-border/50 px-6 py-4 shadow-sm">
+      <div className="flex-1 flex flex-col min-w-0">
+        <header className="bg-gradient-header border-b border-border/50 px-3 md:px-6 py-3 md:py-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg backdrop-blur-sm">
-                  <Shield className="w-6 h-6 text-white" />
+            <div className="flex items-center space-x-2 md:space-x-4">
+              {isMobile && (
+                <SidebarTrigger className="text-white hover:bg-white/10 p-2 -ml-2">
+                  <Menu className="w-5 h-5" />
+                </SidebarTrigger>
+              )}
+              <div className="flex items-center space-x-2 md:space-x-3">
+                <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-lg backdrop-blur-sm">
+                  <Shield className="w-4 h-4 md:w-6 md:h-6 text-white" />
                 </div>
-                <div>
-                  <h1 className="text-xl font-bold text-white">Medicare Fraud Detection</h1>
-                  <p className="text-xs text-white/80">AI-Powered Healthcare Analytics</p>
+                <div className="min-w-0">
+                  <h1 className="text-sm md:text-xl font-bold text-white truncate">Medicare Fraud Detection</h1>
+                  <p className="text-xs text-white/80 hidden sm:block">AI-Powered Healthcare Analytics</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search claims, providers..."
-                  className="pl-10 w-80 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20"
-                />
-              </div>
+            <div className="flex items-center space-x-2 md:space-x-4">
+              {!isMobile && (
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search claims, providers..."
+                    className="pl-10 w-60 lg:w-80 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20"
+                  />
+                </div>
+              )}
 
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:bg-white/10"
+                className="text-white hover:bg-white/10 h-8 w-8 md:h-10 md:w-10"
                 onClick={() => navigate("/dashboard")}
               >
-                <PlusCircleIcon className="w-5 h-5" />
+                <PlusCircleIcon className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
 
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-                <Bell className="w-5 h-5" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 h-8 w-8 md:h-10 md:w-10">
+                <Bell className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
 
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-                <Settings className="w-5 h-5" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 h-8 w-8 md:h-10 md:w-10">
+                <Settings className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
 
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-                <User className="w-5 h-5" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 h-8 w-8 md:h-10 md:w-10">
+                <User className="w-4 h-4 md:w-5 md:h-5" />
               </Button>
             </div>
           </div>
         </header>
 
-        <main className="flex-1 bg-background overflow-auto">
+        <main className="flex-1 bg-background overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/alerts" element={<Alerts />} />

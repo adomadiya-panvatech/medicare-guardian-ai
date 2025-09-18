@@ -15,6 +15,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const navigationItems = [
   { title: "Dashboard", url: "/", icon: BarChart3 },
@@ -24,7 +25,8 @@ const navigationItems = [
 ];
 
 export function AppSidebar() {
-  const { state, toggleSidebar, isMobile } = useSidebar();
+  const { state, toggleSidebar, isMobile: sidebarMobile } = useSidebar();
+  const isMobile = useIsMobile();
   const location = useLocation();
   const currentPath = location.pathname;
   const collapsed = state === "collapsed";
@@ -37,8 +39,8 @@ export function AppSidebar() {
   return (
     <Sidebar
       className="transition-all duration-300 ease-in-out border-r border-border/50"
-      collapsible="icon"
-      variant="sidebar"
+      collapsible={isMobile ? "offcanvas" : "icon"}
+      variant={isMobile ? "floating" : "sidebar"}
     >
       <SidebarHeader className="border-b border-border/50">
         <div className="flex items-center justify-between p-4">

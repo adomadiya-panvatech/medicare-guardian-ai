@@ -8,12 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
-      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-4 lg:p-6 max-w-full">
+    <div className="min-h-screen bg-background">
+      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-6 p-3 md:p-4 lg:p-6 w-full overflow-x-hidden">
         {/* Main Content Area */}
-        <div className="flex-1 space-y-4 lg:space-y-6 min-w-0">
+        <div className="flex-1 space-y-3 md:space-y-4 lg:space-y-6 min-w-0 w-full">
           {/* KPI Overview Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
             <KPICard
               title="Total Fraud Detected"
               value="$18.4M"
@@ -60,23 +60,23 @@ const Index = () => {
         </div>
 
         {/* Right Sidebar */}
-        <div className="w-full lg:w-80 xl:w-96 space-y-4 lg:space-y-6 flex-shrink-0">
+        <div className="w-full lg:w-80 xl:w-96 space-y-3 md:space-y-4 lg:space-y-6 flex-shrink-0">
           {/* Quick Actions Card */}
-          <div className="bg-gradient-card border border-border/50 rounded-lg p-4 lg:p-6">
-            <div className="flex items-center space-x-3 mb-4 lg:mb-6">
+          <div className="bg-gradient-card border border-border/50 rounded-lg p-3 md:p-4 lg:p-6">
+            <div className="flex items-center space-x-3 mb-3 md:mb-4 lg:mb-6">
               <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                <Shield className="w-5 h-5 text-primary" />
+                <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground text-sm lg:text-base">Quick Actions</h3>
+              <h3 className="font-semibold text-foreground text-sm md:text-base">Quick Actions</h3>
             </div>
-            <div className="space-y-3">
-              <button className="w-full p-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm lg:text-base">
+            <div className="space-y-2 md:space-y-3">
+              <button className="w-full p-2.5 md:p-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm">
                 Generate Report
               </button>
-              <button className="w-full p-3 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors font-medium text-sm lg:text-base">
+              <button className="w-full p-2.5 md:p-3 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors font-medium text-sm">
                 Review High-Risk Cases
               </button>
-              <button className="w-full p-3 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors font-medium text-sm lg:text-base">
+              <button className="w-full p-2.5 md:p-3 bg-muted text-muted-foreground rounded-lg hover:bg-muted/80 transition-colors font-medium text-sm">
                 Export Data
               </button>
             </div>
@@ -118,14 +118,14 @@ const Index = () => {
         </Card>
 
           {/* Recent Activity Card */}
-          <div className="bg-gradient-card border border-border/50 rounded-lg p-4 lg:p-6">
-            <div className="flex items-center space-x-3 mb-4 lg:mb-6">
+          <div className="bg-gradient-card border border-border/50 rounded-lg p-3 md:p-4 lg:p-6">
+            <div className="flex items-center space-x-3 mb-3 md:mb-4 lg:mb-6">
               <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                <AlertTriangle className="w-5 h-5 text-primary" />
+                <AlertTriangle className="w-4 h-4 md:w-5 md:h-5 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground text-sm lg:text-base">Recent Activity</h3>
+              <h3 className="font-semibold text-foreground text-sm md:text-base">Recent Activity</h3>
             </div>
-            <div className="space-y-3 lg:space-y-4">
+            <div className="space-y-2 md:space-y-3 lg:space-y-4">
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-danger rounded-full mt-2 flex-shrink-0"></div>
                 <div className="flex-1 min-w-0">
@@ -151,35 +151,35 @@ const Index = () => {
           </div>
 
           {/* Recent Fraud Alerts Card */}
-          <div className="bg-gradient-card border border-border/50 rounded-lg p-4 lg:p-6">
-            <div className="flex items-center justify-between mb-4 lg:mb-6">
-              <h3 className="font-semibold text-foreground text-sm lg:text-base">Recent Fraud Alerts</h3>
+          <div className="bg-gradient-card border border-border/50 rounded-lg p-3 md:p-4 lg:p-6">
+            <div className="flex items-center justify-between mb-3 md:mb-4 lg:mb-6">
+              <h3 className="font-semibold text-foreground text-sm md:text-base">Recent Fraud Alerts</h3>
               <button className="text-xs text-primary hover:text-primary/80 font-medium">View All</button>
             </div>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                <div className="flex items-center space-x-3 flex-1 min-w-0">
-                  <div className="w-8 h-8 bg-danger/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <AlertTriangle className="w-4 h-4 text-danger" />
+            <div className="space-y-2 md:space-y-3">
+              <div className="flex items-start md:items-center p-2.5 md:p-3 bg-muted/30 rounded-lg">
+                <div className="flex items-start md:items-center space-x-2 md:space-x-3 flex-1 min-w-0">
+                  <div className="w-6 h-6 md:w-8 md:h-8 bg-danger/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 md:mt-0">
+                    <AlertTriangle className="w-3 h-3 md:w-4 md:h-4 text-danger" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground truncate">Dr. Sarah Johnson</p>
+                    <p className="text-xs md:text-sm font-medium text-foreground truncate">Dr. Sarah Johnson</p>
                     <p className="text-xs text-muted-foreground">Overbilling • $45,230</p>
                   </div>
                 </div>
-                <span className="bg-danger/20 text-danger text-xs px-2 py-1 rounded-full font-medium flex-shrink-0">High Risk</span>
+                <span className="bg-danger/20 text-danger text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-full font-medium flex-shrink-0 ml-1">High Risk</span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
-                <div className="flex items-center space-x-3 flex-1 min-w-0">
-                  <div className="w-8 h-8 bg-warning/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <AlertTriangle className="w-4 h-4 text-warning" />
+              <div className="flex items-start md:items-center p-2.5 md:p-3 bg-muted/30 rounded-lg">
+                <div className="flex items-start md:items-center space-x-2 md:space-x-3 flex-1 min-w-0">
+                  <div className="w-6 h-6 md:w-8 md:h-8 bg-warning/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 md:mt-0">
+                    <AlertTriangle className="w-3 h-3 md:w-4 md:h-4 text-warning" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground truncate">Metro Healthcare</p>
+                    <p className="text-xs md:text-sm font-medium text-foreground truncate">Metro Healthcare</p>
                     <p className="text-xs text-muted-foreground">Upcoding • $23,410</p>
                   </div>
                 </div>
-                <span className="bg-warning/20 text-warning text-xs px-2 py-1 rounded-full font-medium flex-shrink-0">Medium</span>
+                <span className="bg-warning/20 text-warning text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-full font-medium flex-shrink-0 ml-1">Medium</span>
               </div>
             </div>
           </div>
@@ -187,7 +187,7 @@ const Index = () => {
       </div>
 
       {/* Bottom Section - Provider Analytics (Desktop: hidden on mobile) */}
-      <div className="hidden lg:block px-4 lg:px-6 pb-4 lg:pb-6">
+      <div className="hidden lg:block px-3 md:px-4 lg:px-6 pb-3 md:pb-4 lg:pb-6">
         <ProviderAnalytics />
       </div>
     </div>
