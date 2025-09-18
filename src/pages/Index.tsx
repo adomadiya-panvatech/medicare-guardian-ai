@@ -4,6 +4,7 @@ import { KPICard } from "@/components/KPICard";
 import { FraudChart } from "@/components/FraudChart";
 import { AlertsTable } from "@/components/AlertsTable";
 import { ProviderAnalytics } from "@/components/ProviderAnalytics";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
   return (
