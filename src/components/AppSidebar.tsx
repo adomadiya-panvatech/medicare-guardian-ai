@@ -109,7 +109,7 @@ export function AppSidebar() {
                         }`
                       }
                     >
-                      <item.icon className={`w-5 h-5 flex-shrink-0 ${collapsed ? 'mx-auto me-2' : ''}`} />
+                      <item.icon className={`w-5 h-5 flex-shrink-0 ${collapsed ? 'mx-auto' : ''}`} />
                       {!collapsed && (
                         <span className="truncate">{item.title}</span>
                       )}
