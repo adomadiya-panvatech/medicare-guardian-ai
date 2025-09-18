@@ -5,7 +5,7 @@ import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, L
 const Providers = () => {
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-5">
       {/* Provider Search and Filters */}
       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">

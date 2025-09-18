@@ -5,7 +5,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 const NetworkAnalysis = () => {
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-5">
       {/* Network Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
