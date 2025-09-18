@@ -12,7 +12,7 @@ const Index = () => {
         {/* Main Content Area */}
         <div className="flex-1 space-y-4 lg:space-y-6 min-w-0">
           {/* KPI Overview Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4">
             <KPICard
               title="Total Fraud Detected"
               value="$18.4M"
